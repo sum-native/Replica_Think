@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: simple-example
+spec:
+  rules:
+  - host: testingingresshost.com
+    http:
+      paths:
+      - backend:
+          serviceName: my-service 
+          servicePort: 3000
+        pathType: prefix
+        path: /
