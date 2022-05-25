@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: sumanthc/node-js_routes:latest
+        image: 237456571459.dkr.ecr.us-east-2.amazonaws.com/sample_node_js:latest
         ports:
         - containerPort: 3000
           name: web
