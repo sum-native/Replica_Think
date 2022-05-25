@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: web
 spec:
-  serviceName: "nginx"
+  serviceName: "my-service"
   replicas: 2
   selector:
     matchLabels:
@@ -14,11 +14,31 @@ spec:
         app:  web
     spec:
       containers:
-      - name: nginx
-        image: 237456571459.dkr.ecr.us-east-2.amazonaws.com/sample_node_js:latest
+      - name: think-replica
+        image: sumanthc/node-js_routes:latest
+        env:
+        - name: CHECK
+          value: "1"
         ports:
         - containerPort: 3000
           name: web
+        livenessProbe:
+          tcpSocket:
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds:  10
+        readinessProbe:
+          tcpSocket: 
+            port: 3000
+          initialDelaySeconds: 20
+          periodSeconds: 5
+        resources:
+          requests:
+            memory: "24M"
+            cpu:  "150m"
+          limits:
+            memory: "32M"
+            cpu: "250m"
+
 
     
-  
