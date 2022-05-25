@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: think-replica
-        image: sumanthc/node-js_routes:latest
+        image: 237456571459.dkr.ecr.us-east-2.amazonaws.com/sample_node_js:latest
         env:
         - name: CHECK
           value: "1"
